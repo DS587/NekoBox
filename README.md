@@ -26,3 +26,15 @@ cp conf/app.sample.conf app.conf
 # Run
 ./NekoBox
 ```
+
+If you want enable https, you can use [Caddy](https://github.com/caddyserver/caddy)
+
+Configure the Caddyfile in `/etc/caddy/`, the follwing is a simple case
+
+```bash
+domainToYouBox.com {
+    reverse_proxy  127.0.0.1:8080
+    tls demo@demo.com
+}
+```
+
