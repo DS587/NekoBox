@@ -9,7 +9,7 @@ Thanks for the [original gopher](https://github.com/wuhan005), NekoBox is an ama
 # Pre
 You should install the following dependencies:
 - Go
-- mySQL
+- mySQL (create a database for Nekomi manually)
 
 # Install
 
