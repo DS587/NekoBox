@@ -1,18 +1,21 @@
-# NekoBox
+# Nekomi
 
-This is a personalized branch, for the purpose of specified users to use.
+Nekomi is a personalized branch from NekoBox, for the purpose of specified users to use.
 
 Forked from a previous commit without Redis and CDN configuration. 
 
 Thanks for the [original gopher](https://github.com/wuhan005), NekoBox is an amazing project!
 
 # Pre
-You should install the follwing dependencies:
+You should install the following dependencies:
 - Go
 - mySQL
 
 # Install
 
+You can download the [pre-build](https://github.com/DS587/NekoBox/releases/latest), or build Nekomi by yourself.
+
+To build:
 ```bash
 git clone https://github.com/DS587/NekoBox.git
 cd NekoBox
