@@ -44,7 +44,11 @@ func init() {
 
 	beego.Router("/", &controllers.MainController{})
 
-	beego.Router("/register", &controllers.UserController{}, "get:RegisterGet;post:RegisterPost")
+	// 笨笨的检测是否开启注册(
+	if beego.AppConfig.String("open_register") == "true" {
+		beego.Router("/register", &controllers.UserController{}, "get:RegisterGet;post:RegisterPost")
+	}
+	
 	beego.Router("/login", &controllers.UserController{}, "get:LoginGet;post:LoginPost")
 	beego.Router("/forgotPassword", &controllers.UserController{}, "get:ForgotPasswordGet;post:ForgotPasswordPost")
 	beego.Router("/recoveryPassword", &controllers.UserController{}, "get:RecoveryPasswordGet;post:RecoveryPasswordPost")
