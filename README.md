@@ -52,3 +52,6 @@ domainToYouBox.com {
 if you meet error like this: `Access denied for user 'root'@'localhost'`, the problem is at mySQL, you can refer this [issue](https://stackoverflow.com/questions/39281594/error-1698-28000-access-denied-for-user-rootlocalhost)
 
 
+## reCAPTCHA
+
+You can use [google reCAPTCHA](https://www.google.com/recaptcha/about/)
