@@ -2,7 +2,7 @@
 
 Nekomi is a personalized branch from NekoBox, for the purpose of specified users to use.
 
-Forked from a previous commit without Redis and CDN configuration. 
+Forked from a previous commit without Redis and other cloud configuration. 
 
 Thanks for the [original gopher](https://github.com/wuhan005), NekoBox is an amazing project!
 
