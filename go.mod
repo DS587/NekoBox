@@ -1,4 +1,4 @@
-module github.com/NekoWheel/NekoBox
+module NekoBox
 
 go 1.13
 

@@ -3,8 +3,8 @@ package routers
 import (
 	"html/template"
 
-	"./controllers"
-	"./models"
+	"NekoBox/controllers"
+	"NekoBox/models"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
 )
