@@ -13,8 +13,8 @@
             <img class="uk-border-circle uk-box-shadow-large"
                  src="{{ .userContent.Avatar }}?x-oss-process=image/auto-orient,1/quality,q_70/sharpen,200/resize,limit_0,m_fill,w_200,h_200/format,png"
                  width="100" height="100">
-            <h3>{{ .userContent.Name }}</h3>
-            <p>{{ .pageContent.Intro }}</p>
+            <h3 style="color: rgb(255, 255, 255);text-shadow: black 0px 0px 10px;">{{ .userContent.Name }}</h3>
+            <p style="color: rgb(255, 255, 255);text-shadow: black 0px 0px 10px;">{{ .pageContent.Intro }}</p>
         </div>
     </div>
 </div>
