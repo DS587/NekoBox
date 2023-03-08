@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/validation"
-	"github.com/NekoWheel/NekoBox/models"
+	"NekoBox/models"
 	"strconv"
 )
 

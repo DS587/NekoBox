@@ -1,8 +1,8 @@
 package main
 
 import (
-	_ "github.com/NekoWheel/NekoBox/routers"
-	"github.com/NekoWheel/NekoBox/template"
+	_ "NekoBox/routers"
+	"NekoBox/template"
 	"github.com/astaxie/beego"
 )
 

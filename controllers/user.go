@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/NekoWheel/NekoBox/models"
+	"NekoBox/models"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/validation"
 )
