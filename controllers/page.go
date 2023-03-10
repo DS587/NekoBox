@@ -93,4 +93,6 @@ func (this *PageController) NewQuestion() {
 
 	this.Data["questionDraft"] = ""
 	this.Data["success"] = "发送问题成功！"
+	
+	this.Data["content"] = ""
 }
