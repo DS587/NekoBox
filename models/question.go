@@ -67,3 +67,10 @@ func DeleteQuestion(questionID uint) {
 	}
 	tx.Commit()
 }
+
+// Ban IP by retrieving question ID
+// func BanQuestion(questionID uint) {
+// 	tx := DB.Begin()
+
+// 	if tx.Where("id = ?", questionID)
+// }

@@ -5,6 +5,7 @@ import (
 
 	"NekoBox/controllers"
 	"NekoBox/models"
+
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
 )
@@ -48,7 +49,7 @@ func init() {
 	if beego.AppConfig.String("open_register") == "true" {
 		beego.Router("/register", &controllers.UserController{}, "get:RegisterGet;post:RegisterPost")
 	}
-	
+
 	beego.Router("/login", &controllers.UserController{}, "get:LoginGet;post:LoginPost")
 	beego.Router("/forgotPassword", &controllers.UserController{}, "get:ForgotPasswordGet;post:ForgotPasswordPost")
 	beego.Router("/recoveryPassword", &controllers.UserController{}, "get:RecoveryPasswordGet;post:RecoveryPasswordPost")
@@ -58,6 +59,7 @@ func init() {
 
 	beego.Router("/question", &controllers.QuestionController{}, "get:QuestionList")
 	beego.Router("/delete/:domain/:id:int", &controllers.QuestionController{}, "post:QuestionDelete")
+	beego.Router("/ban/:domain/:id:int", &controllers.QuestionController{}, "post:QuestionBan")
 	beego.Router("/setting", &controllers.SettingController{}, "get:Index;post:UpdateProfile")
 	beego.Router("/logout", &controllers.SettingController{}, "get:Logout")
 

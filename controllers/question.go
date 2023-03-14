@@ -1,11 +1,12 @@
 package controllers
 
 import (
+	"NekoBox/models"
 	"fmt"
+	"strconv"
+
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/validation"
-	"NekoBox/models"
-	"strconv"
 )
 
 type QuestionController struct {
@@ -158,4 +159,8 @@ func (this *QuestionController) QuestionDelete() {
 
 	models.DeleteQuestion(question.ID)
 	this.Redirect("/_/"+domain, 302)
+}
+
+func (this *QuestionController) QuestionBan() {
+	fmt.Println("ban routing is working!")
 }
