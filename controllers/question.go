@@ -163,4 +163,5 @@ func (this *QuestionController) QuestionDelete() {
 
 func (this *QuestionController) QuestionBan() {
 	fmt.Println("ban routing is working!")
+	this.Redirect("/_/"+domain, 302)
 }
