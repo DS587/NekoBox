@@ -142,3 +142,11 @@ type EmailValidation struct {
 	Code   string
 	Type   string
 }
+
+type BanIP struct {
+	gorm.Model
+	PageID  uint
+	Content string
+	Answer  string
+	IP  string
+}
