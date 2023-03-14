@@ -131,6 +131,7 @@ type Question struct {
 	PageID  uint
 	Content string
 	Answer  string
+	IP  string
 }
 
 // EmailValidation used to save the email validation data.

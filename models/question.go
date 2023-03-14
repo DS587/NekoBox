@@ -6,11 +6,12 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-func NewQuestion(form *QuestionForm) (uint, error) {
+func NewQuestion(form *QuestionForm, ip string) (uint, error) {
 	question := &Question{
 		PageID:  form.PageID,
 		Content: form.Content,
 		Answer:  "",
+		IP: ip,
 	}
 	tx := DB.Begin()
 	if tx.Create(question).RowsAffected != 1 {
