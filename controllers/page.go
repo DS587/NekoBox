@@ -50,7 +50,7 @@ func (this *PageController) NewQuestion() {
 
 	// DEMO: banned IP cannot raise a new questions
 	if models.CheckIP(this.Ctx.Input.IP()) != nil {
-		this.Data["error"] = "您已被拉黑"
+		this.Data["error"] = "您已被全站拉黑"
 		return
 	}
 	
