@@ -163,6 +163,34 @@ func (this *QuestionController) QuestionDelete() {
 
 func (this *QuestionController) QuestionBan() {
 	fmt.Println("ban routing is working!")
+
+	isLogin := this.Ctx.Input.GetData("isLogin").(bool)
+	if !isLogin {
+		this.Redirect("/login", 302)
+		return
+	}
+	user := this.Ctx.Input.GetData("user").(*models.User)
+
 	domain := this.Ctx.Input.Param(":domain")
+	id := this.Ctx.Input.Param(":id")
+	questionID, err := strconv.Atoi(id)
+	if err != nil {
+		this.Redirect("/", 302)
+		return
+	}
+
+	question, err := models.GetQuestionByDomainID(domain, uint(questionID))
+	if err != nil {
+		this.Redirect("/", 302)
+		return
+	}
+
+	if question.PageID != user.PageID {
+		this.Redirect("/", 302)
+		return
+	}
+
+	// DataBase Manipulation
+	models.BanQuestion(question.ID)
 	this.Redirect("/_/"+domain, 302)
 }

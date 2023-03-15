@@ -4,6 +4,7 @@ import (
 	"errors"
 
 	"github.com/jinzhu/gorm"
+	"fmt"
 )
 
 func NewQuestion(form *QuestionForm, ip string) (uint, error) {
@@ -69,8 +70,12 @@ func DeleteQuestion(questionID uint) {
 }
 
 // Ban IP by retrieving question ID
-// func BanQuestion(questionID uint) {
-// 	tx := DB.Begin()
+func BanQuestion(questionID uint) {
+	tx := DB.Begin()
 
-// 	if tx.Where("id = ?", questionID)
-// }
+	q_toban := tx.Where("id = ?", questionID).First(&Question)
+	if q_toban.RowsAffected != 1 {
+		return
+	}
+	fmt.Println(q_toban.ip)
+}
