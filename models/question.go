@@ -103,3 +103,13 @@ func BanQuestion(questionID uint) {
 	tx.Where("ip = ?", toban_ip).Where("page_id = ?", user_id).Where("answer = ?", "").Unscoped().Delete(&Question{})
 	tx.Commit()
 }
+
+// Check if IP has been banned
+func CheckIP(ip string) error {
+	isIPban := DB.Where("ip = ?", ip).Find(&BanIP{}).RowsAffected
+
+	if isIPban > 0 {
+		return errors.New("您已被拉黑")
+	}
+	return nil
+}

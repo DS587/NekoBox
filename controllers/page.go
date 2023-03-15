@@ -47,6 +47,14 @@ func (this *PageController) Index() {
 // NewQuestion is post new question handler.
 func (this *PageController) NewQuestion() {
 	q := new(models.QuestionForm)
+
+	// DEMO: banned IP cannot raise a new questions
+	if models.CheckIP(this.Ctx.Input.IP()) != nil {
+		this.Data["error"] = "您已被拉黑"
+		return
+	}
+	
+
 	if err := this.ParseForm(q); err != nil {
 		this.Data["error"] = "发送问题失败！"
 		this.Data["content"] = q.Content

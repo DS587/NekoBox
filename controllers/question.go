@@ -17,6 +17,13 @@ type QuestionController struct {
 func (this *QuestionController) Question() {
 	domain := this.Ctx.Input.Param(":domain")
 	id := this.Ctx.Input.Param(":id")
+	ip := this.Ctx.Input.IP()
+
+	// DEMO: Banned IP cannot get the questions
+	if models.CheckIP(ip) != nil {
+		this.Redirect("/", 302)
+		return
+	}
 
 	questionID, err := strconv.Atoi(id)
 	if err != nil {
