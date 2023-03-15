@@ -98,4 +98,8 @@ func BanQuestion(questionID uint) {
 		}
 		tx.Commit()
 	}
+
+	tx := DB.Begin()
+	tx.Where("ip = ?", toban_ip).Where("page_id = ?", user_id).Unscoped().Delete(&Question{})
+	tx.Commit()
 }
