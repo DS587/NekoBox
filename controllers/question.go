@@ -1,11 +1,12 @@
 package controllers
 
 import (
+	"NekoBox/models"
 	"fmt"
+	"strconv"
+
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/validation"
-	"NekoBox/models"
-	"strconv"
 )
 
 type QuestionController struct {
@@ -16,6 +17,13 @@ type QuestionController struct {
 func (this *QuestionController) Question() {
 	domain := this.Ctx.Input.Param(":domain")
 	id := this.Ctx.Input.Param(":id")
+	ip := this.Ctx.Input.IP()
+
+	// DEMO: Banned IP cannot get the questions
+	if models.CheckIP(ip) != nil {
+		this.Redirect("/", 302)
+		return
+	}
 
 	questionID, err := strconv.Atoi(id)
 	if err != nil {
@@ -157,5 +165,37 @@ func (this *QuestionController) QuestionDelete() {
 	}
 
 	models.DeleteQuestion(question.ID)
+	this.Redirect("/_/"+domain, 302)
+}
+
+func (this *QuestionController) QuestionBan() {
+	isLogin := this.Ctx.Input.GetData("isLogin").(bool)
+	if !isLogin {
+		this.Redirect("/login", 302)
+		return
+	}
+	user := this.Ctx.Input.GetData("user").(*models.User)
+
+	domain := this.Ctx.Input.Param(":domain")
+	id := this.Ctx.Input.Param(":id")
+	questionID, err := strconv.Atoi(id)
+	if err != nil {
+		this.Redirect("/", 302)
+		return
+	}
+
+	question, err := models.GetQuestionByDomainID(domain, uint(questionID))
+	if err != nil {
+		this.Redirect("/", 302)
+		return
+	}
+
+	if question.PageID != user.PageID {
+		this.Redirect("/", 302)
+		return
+	}
+
+	// DataBase Manipulation
+	models.BanQuestion(question.ID)
 	this.Redirect("/_/"+domain, 302)
 }

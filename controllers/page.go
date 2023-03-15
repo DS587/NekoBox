@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"NekoBox/models"
+
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/validation"
 	"github.com/jinzhu/gorm"
@@ -46,6 +47,14 @@ func (this *PageController) Index() {
 // NewQuestion is post new question handler.
 func (this *PageController) NewQuestion() {
 	q := new(models.QuestionForm)
+
+	// DEMO: banned IP cannot raise a new questions
+	if models.CheckIP(this.Ctx.Input.IP()) != nil {
+		this.Data["error"] = "您已被全站拉黑"
+		return
+	}
+	
+
 	if err := this.ParseForm(q); err != nil {
 		this.Data["error"] = "发送问题失败！"
 		this.Data["content"] = q.Content
@@ -78,7 +87,7 @@ func (this *PageController) NewQuestion() {
 
 	page := this.Ctx.Input.GetData("pageContent").(*models.Page)
 	q.PageID = page.ID
-	questionID, err := models.NewQuestion(q)
+	questionID, err := models.NewQuestion(q, this.Ctx.Input.IP())
 	if err != nil {
 		this.Data["error"] = err.Error()
 		this.Data["content"] = q.Content
@@ -93,4 +102,5 @@ func (this *PageController) NewQuestion() {
 
 	this.Data["questionDraft"] = ""
 	this.Data["success"] = "发送问题成功！"
+
 }

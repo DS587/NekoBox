@@ -34,6 +34,12 @@
                             {{ .xsrfdata }}
                             <button class="uk-button uk-button-danger uk-button-small">删除提问</button>
                         </form>
+                        <form class="uk-float-left"
+                              method="post"
+                              action="/ban/{{ .pageContent.Domain }}/{{ .questionContent.ID }}">
+                            {{ .xsrfdata }}
+                            <button class="uk-button uk-button-link">删除并拉黑</button>
+                        </form>
                     {{end}}
                     <form method="post">
                         {{ .xsrfdata }}

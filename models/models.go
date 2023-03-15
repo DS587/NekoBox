@@ -35,7 +35,7 @@ func init() {
 	}
 	DB = db
 
-	DB.AutoMigrate(&User{}, &Page{}, &Question{}, &EmailValidation{})
+	DB.AutoMigrate(&User{}, &Page{}, &Question{}, &EmailValidation{}, &BanIP{})
 }
 
 type UserRegisterForm struct {
@@ -131,6 +131,7 @@ type Question struct {
 	PageID  uint
 	Content string
 	Answer  string
+	IP      string
 }
 
 // EmailValidation used to save the email validation data.
@@ -140,4 +141,13 @@ type EmailValidation struct {
 	Email  string
 	Code   string
 	Type   string
+}
+
+// BanIP to keep ban ip records.
+type BanIP struct {
+	gorm.Model
+	PageID  uint
+	Content string
+	Answer  string
+	IP      string
 }

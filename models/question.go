@@ -6,11 +6,12 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-func NewQuestion(form *QuestionForm) (uint, error) {
+func NewQuestion(form *QuestionForm, ip string) (uint, error) {
 	question := &Question{
 		PageID:  form.PageID,
 		Content: form.Content,
 		Answer:  "",
+		IP: ip,
 	}
 	tx := DB.Begin()
 	if tx.Create(question).RowsAffected != 1 {
@@ -65,4 +66,50 @@ func DeleteQuestion(questionID uint) {
 		tx.Rollback()
 	}
 	tx.Commit()
+}
+
+// Ban IP by retrieving question ID
+func BanQuestion(questionID uint) {
+	// Get the banned IP by question ID
+	question := new(Question)
+	DB.Model(&Question{}).Where(&Question{Model: gorm.Model{ID: questionID}}).Find(&question)
+	toban_ip := question.IP
+	user_id := question.PageID
+
+	// Get questions from ban IP
+	questions := make([]*Question, 0)
+	query := DB.Model(&Question{}).Where(&Question{PageID: user_id, IP: toban_ip}).Where("answer = ?", "").Order("`id` DESC")
+
+	query.Find(&questions)
+
+	// Record to BanIP table
+	for _, q := range questions {
+		t_q := &BanIP{
+			PageID: q.PageID,
+			Content: q.Content,
+			Answer: q.Answer,
+			IP: q.IP,
+		}
+
+		tx := DB.Begin()
+		if tx.Create(t_q).RowsAffected != 1 {
+			tx.Rollback()
+			return
+		}
+		tx.Commit()
+	}
+
+	tx := DB.Begin()
+	tx.Where("ip = ?", toban_ip).Where("page_id = ?", user_id).Where("answer = ?", "").Unscoped().Delete(&Question{})
+	tx.Commit()
+}
+
+// Check if IP has been banned
+func CheckIP(ip string) error {
+	isIPban := DB.Where("ip = ?", ip).Find(&BanIP{}).RowsAffected
+
+	if isIPban > 0 {
+		return errors.New("您已被拉黑")
+	}
+	return nil
 }
