@@ -78,7 +78,7 @@ func BanQuestion(questionID uint) {
 
 	// Get questions from ban IP
 	questions := make([]*Question, 0)
-	query := DB.Model(&Question{}).Where(&Question{PageID: user_id, IP: toban_ip}).Order("`id` DESC")
+	query := DB.Model(&Question{}).Where(&Question{PageID: user_id, IP: toban_ip}).Where("answer = ?", "").Order("`id` DESC")
 
 	query.Find(&questions)
 
@@ -100,6 +100,6 @@ func BanQuestion(questionID uint) {
 	}
 
 	tx := DB.Begin()
-	tx.Where("ip = ?", toban_ip).Where("page_id = ?", user_id).Unscoped().Delete(&Question{})
+	tx.Where("ip = ?", toban_ip).Where("page_id = ?", user_id).Where("answer = ?", "").Unscoped().Delete(&Question{})
 	tx.Commit()
 }
