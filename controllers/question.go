@@ -169,8 +169,6 @@ func (this *QuestionController) QuestionDelete() {
 }
 
 func (this *QuestionController) QuestionBan() {
-	fmt.Println("ban routing is working!")
-
 	isLogin := this.Ctx.Input.GetData("isLogin").(bool)
 	if !isLogin {
 		this.Redirect("/login", 302)
