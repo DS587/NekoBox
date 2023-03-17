@@ -44,7 +44,7 @@
                     <form method="post">
                         {{ .xsrfdata }}
                         <div class="uk-margin uk-text-center">
-                            <textarea name="answer" class="uk-textarea" rows="3" maxlength="150"
+                            <textarea name="answer" class="uk-textarea" rows="3" maxlength="1000"
                                       placeholder="在此处撰写你的回答..."></textarea>
                         </div>
                         <div class="uk-margin uk-text-center">
@@ -58,7 +58,7 @@
                 {{ .xsrfdata }}
                 <div class="uk-margin uk-text-center">
                     <textarea name="content" class="uk-textarea" rows="3" placeholder="在此处撰写你的问题..."
-                              maxlength="150"></textarea>
+                              maxlength="1000"></textarea>
                 </div>
                 <div class="uk-margin uk-text-center">
                     <button type="submit" class="uk-button uk-button-primary g-recaptcha"
