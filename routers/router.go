@@ -19,6 +19,7 @@ func init() {
 		c.Input.Data()["title"] = beego.AppConfig.String("title")
 		c.Input.Data()["icp"] = beego.AppConfig.String("icp")
 		c.Input.Data()["commitSha"] = COMMIT_SHA
+		c.Input.Data()["recaptcha_enabled"] = models.RecaptchaEnabled()
 		c.Input.Data()["recaptcha"] = beego.AppConfig.String("recaptcha_site_key")
 		c.Input.Data()["recaptcha_domain"] = beego.AppConfig.String("recaptcha_domain")
 		c.Input.Data()["xsrfdata"] = template.HTML(`<input type="hidden" name="_xsrf" value="` +

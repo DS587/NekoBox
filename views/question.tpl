@@ -61,8 +61,8 @@
                               maxlength="150"></textarea>
                 </div>
                 <div class="uk-margin uk-text-center">
-                    <button type="submit" class="uk-button uk-button-primary g-recaptcha"
-                            data-sitekey="{{.recaptcha}}" data-callback="onSubmit">发送提问
+                    <button type="submit" class="uk-button uk-button-primary{{if .recaptcha_enabled}} g-recaptcha{{end}}"{{if .recaptcha_enabled}}
+                            data-sitekey="{{.recaptcha}}" data-callback="onSubmit"{{end}}>发送提问
                     </button>
                 </div>
             </form>

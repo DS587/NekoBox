@@ -9,8 +9,8 @@
             <input name="email" class="uk-input" type="text" value="{{.email}}">
         </div>
         <div class="uk-margin">
-            <button type="submit" class="uk-button uk-button-primary g-recaptcha" data-sitekey="{{.recaptcha}}"
-                    data-callback="onSubmit">找回密码
+            <button type="submit" class="uk-button uk-button-primary{{if .recaptcha_enabled}} g-recaptcha{{end}}"{{if .recaptcha_enabled}} data-sitekey="{{.recaptcha}}"
+                    data-callback="onSubmit"{{end}}>找回密码
             </button>
         </div>
     </fieldset>

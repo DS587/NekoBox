@@ -53,7 +53,6 @@ func (this *PageController) NewQuestion() {
 		this.Data["error"] = "您已被全站拉黑"
 		return
 	}
-	
 
 	if err := this.ParseForm(q); err != nil {
 		this.Data["error"] = "发送问题失败！"
@@ -79,7 +78,7 @@ func (this *PageController) NewQuestion() {
 	}
 
 	// recaptcha
-	if !models.CheckRecaptcha(q.Recaptcha, this.Ctx.Input.IP()) {
+	if models.RecaptchaEnabled() && !models.CheckRecaptcha(q.Recaptcha, this.Ctx.Input.IP()) {
 		this.Data["error"] = "请不要搞事情，感谢。"
 		this.Data["content"] = q.Content
 		return

@@ -65,7 +65,7 @@ func (this *UserController) RegisterPost() {
 		}
 	}
 
-	if !models.CheckRecaptcha(r.Recaptcha, this.Ctx.Input.IP()) {
+	if models.RecaptchaEnabled() && !models.CheckRecaptcha(r.Recaptcha, this.Ctx.Input.IP()) {
 		this.Data["error"] = "请不要搞事情，感谢。"
 		this.Data["name"] = r.Name
 		this.Data["email"] = r.Email
@@ -116,7 +116,7 @@ func (this *UserController) LoginPost() {
 	}
 
 	// recaptcha
-	if !models.CheckRecaptcha(r.Recaptcha, this.Ctx.Input.IP()) {
+	if models.RecaptchaEnabled() && !models.CheckRecaptcha(r.Recaptcha, this.Ctx.Input.IP()) {
 		this.Data["error"] = "请不要搞事情，感谢。"
 		this.Data["email"] = r.Email
 		return

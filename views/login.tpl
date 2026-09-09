@@ -13,8 +13,8 @@
             <input type="password" name="password" class="uk-input" type="text">
         </div>
         <div class="uk-margin">
-            <button type="submit" class="uk-button uk-button-primary g-recaptcha" data-sitekey="{{.recaptcha}}"
-                    data-callback="onSubmit">登录
+            <button type="submit" class="uk-button uk-button-primary{{if .recaptcha_enabled}} g-recaptcha{{end}}"{{if .recaptcha_enabled}} data-sitekey="{{.recaptcha}}"
+                    data-callback="onSubmit"{{end}}>登录
             </button>
             <a href="/forgotPassword" class="uk-button uk-button-default">忘记密码
             </a>

@@ -39,7 +39,7 @@ func init() {
 }
 
 type UserRegisterForm struct {
-	Recaptcha      string `form:"g-recaptcha-response" valid:"Required" label:"Recaptcha"`
+	Recaptcha      string `form:"g-recaptcha-response" label:"Recaptcha"`
 	Name           string `form:"name" valid:"Required; MaxSize(20)" label:"昵称"`
 	Password       string `form:"password" valid:"Required; MinSize(8); MaxSize(30)" label:"密码"`
 	RepeatPassword string `form:"repeat_password"`
@@ -54,7 +54,7 @@ func (f *UserRegisterForm) Valid(v *validation.Validation) {
 }
 
 type UserLoginForm struct {
-	Recaptcha string `form:"g-recaptcha-response" valid:"Required" label:"Recaptcha"`
+	Recaptcha string `form:"g-recaptcha-response" label:"Recaptcha"`
 	Email     string `form:"email" valid:"Required; Email; MaxSize(100)" label:"电子邮箱"`
 	Password  string `form:"password" valid:"Required; MinSize(8); MaxSize(30)" label:"密码"`
 }
@@ -75,7 +75,7 @@ func (f *PasswordRecoveryForm) Valid(v *validation.Validation) {
 }
 
 type QuestionForm struct {
-	Recaptcha string `form:"g-recaptcha-response" valid:"Required" label:"Recaptcha"`
+	Recaptcha string `form:"g-recaptcha-response" label:"Recaptcha"`
 	PageID    uint
 	Content   string `form:"content" valid:"Required; MaxSize(150)" label:"问题内容"`
 }

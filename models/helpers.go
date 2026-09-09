@@ -22,6 +22,12 @@ func hmacSha1Encode(input string, key string) string {
 	return fmt.Sprintf("%x", h.Sum(nil))
 }
 
+func RecaptchaEnabled() bool {
+	return strings.TrimSpace(beego.AppConfig.String("recaptcha_domain")) != "" &&
+		strings.TrimSpace(beego.AppConfig.String("recaptcha_site_key")) != "" &&
+		strings.TrimSpace(beego.AppConfig.String("recaptcha_server_key")) != ""
+}
+
 func CheckRecaptcha(response string, remoteip string) bool {
 	req := gorequest.New().Post(beego.AppConfig.String("recaptcha_domain") + "/recaptcha/api/siteverify").Type("form")
 	req.SendMap(map[string]string{
