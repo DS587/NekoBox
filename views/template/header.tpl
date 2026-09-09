@@ -19,6 +19,11 @@
         .grecaptcha-badge {
             visibility: hidden;
         }
+
+        .nekobox-wrap-text {
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
     </style>
 </head>
 <body>

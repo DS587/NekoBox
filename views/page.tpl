@@ -14,7 +14,7 @@
                  src="{{ .userContent.Avatar }}?x-oss-process=image/auto-orient,1/quality,q_70/sharpen,200/resize,limit_0,m_fill,w_200,h_200/format,png"
                  width="100" height="100">
             <h3 style="color: rgb(255, 255, 255);text-shadow: black 0px 0px 10px;">{{ .userContent.Name }}</h3>
-            <p style="color: rgb(255, 255, 255);text-shadow: black 0px 0px 10px;">{{ .pageContent.Intro }}</p>
+            <p class="nekobox-wrap-text" style="color: rgb(255, 255, 255);text-shadow: black 0px 0px 10px;">{{ .pageContent.Intro }}</p>
         </div>
     </div>
 </div>
@@ -55,7 +55,7 @@
                     <a class="uk-button uk-button-default uk-button-small uk-float-right"
                        href="/_/{{$.pageContent.Domain}}/{{$elem.ID}}">查看回答</a>
                     <div class="uk-text-left uk-text-small uk-text-muted">{{date $elem.CreatedAt "Y-m-d H:i:s"}}</div>
-                    <p class="uk-text-small">{{$elem.Content}}</p>
+                    <p class="uk-text-small nekobox-wrap-text">{{$elem.Content}}</p>
                 </div>
             {{end}}
         {{end}}

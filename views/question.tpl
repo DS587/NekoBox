@@ -9,11 +9,11 @@
     <div class="uk-card uk-card-default">
         <div class="uk-card-header">
             <div class="uk-text-left uk-text-small uk-text-muted">{{date .questionContent.CreatedAt "Y-m-d H:i:s"}}</div>
-            <h4 class="uk-text-center uk-margin-top uk-margin-bottom">{{.questionContent.Content}}</h4>
+            <h4 class="uk-text-center uk-margin-top uk-margin-bottom nekobox-wrap-text">{{.questionContent.Content}}</h4>
         </div>
         {{if ne .questionContent.Answer ""}}
             <div class="uk-card-body">
-                <p class="uk-text-small">{{answerFormat .questionContent.Answer}}</p>
+                <p class="uk-text-small nekobox-wrap-text">{{answerFormat .questionContent.Answer}}</p>
                 <p class="uk-text-small uk-text-right uk-text-muted">-来自@{{.userContent.Name}}的回答</p>
             </div>
         {{end}}
@@ -76,7 +76,7 @@
                         <a class="uk-button uk-button-default uk-button-small uk-float-right"
                            href="/_/{{$.pageContent.Domain}}/{{$elem.ID}}">查看回答</a>
                         <div class="uk-text-left uk-text-small uk-text-muted">{{date $elem.CreatedAt "Y-m-d H:i:s"}}</div>
-                        <p class="uk-text-small">{{$elem.Content}}</p>
+                        <p class="uk-text-small nekobox-wrap-text">{{$elem.Content}}</p>
                     </div>
                 {{end}}
             {{end}}
